@@ -1,0 +1,56 @@
+#what is this 
+import sys
+
+#to remove first line in fsa file
+
+#declare variable that will hold the genome sequence
+genome = ''
+
+#initialize a line counter
+line_number = 0
+
+#read in the genome file
+for line in fsa_in:
+  #remove newline
+  line = line.rstrip ('\n')
+  
+  if line_number > 0;
+    genome = genome + line
+  
+  #increment line_number
+  line_number += 1
+  
+cds = '' 
+trna = ''
+  
+  #close fsa file
+  fsa_in.close()
+  
+  
+  #read in th GFF file
+  
+  for line in gff_in:
+    
+    #types = line.split('; type ')
+    #other_type = types [len(types)-1]
+    
+    fields = line.split('\t')
+    type = fields[2]
+    start = int(fields[3])
+    stop = int(fields[4])
+    
+    #extract feature from genome
+    fragment = genome[start-1:stop]
+    
+    if type == 'CDS':
+      cds += fragment
+    
+    if type == 'intron':
+      intron += fragment
+    
+    g_count=fragment.count('G')
+    c_count=fragment.count('C')
+    
+    
+#close gff file
+gff_in.close()
